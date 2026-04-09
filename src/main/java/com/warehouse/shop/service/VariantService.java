@@ -5,6 +5,7 @@ import com.warehouse.shop.repository.ItemRepository;
 
 
 import com.warehouse.shop.repository.VariantRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class VariantService {
     }
 
     // purchase variant
+    @Transactional
     public Variant purchase(Long variantId, Integer quantity) {
         Variant variant = variantRepository.findById(variantId)
                 .orElseThrow(() -> new RuntimeException("Variant not found"));
